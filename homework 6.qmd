@@ -1,0 +1,127 @@
+---
+title: "ST558 Homework 6"
+format: html
+editor: visual
+---
+
+## Task 1
+
+1. The lapply() function is used to apply a function to each element of a list. The equivalent purrr function is map().
+
+2. 
+```{r, eval=FALSE}
+lapply(X = my_list, 
+       FUN = function(x){
+         corr(x, method = "kendall")
+       }
+)
+```
+
+3. One advantage is that there is more consistency with the purrr functions compared to the BaseR apply functions. Another advantage is the helpers which can allow you to write more compact code.
+
+4. A side-effect function is one that does not change the data and instead produces something. Some examples are print() and plot().
+
+5. This is because when you call a function, it creates a temporary function environment. The code is executed in this environment and after the function is done running the environment is gone.
+
+## Task 2
+
+```{r}
+library(tidyverse)
+```
+
+RMSE Function
+```{r}
+getRMSE <- function(resp, pred, ...) {
+  sq_diff <- (resp - pred)^2
+  sqrt(mean(sq_diff, ...))
+}
+```
+
+```{r}
+set.seed(10)
+n <- 100
+x <- runif(n)
+resp <- 3 + 10 * x + rnorm(n)
+pred <- predict(lm(resp ~ x), data.frame(x))
+getRMSE(resp, pred)  # testing function
+```
+
+```{r}
+resp[2] <- NA_real_
+resp[7] <- NA_real_
+getRMSE(resp, pred, na.rm = TRUE)  # specifying for missing values
+getRMSE(resp, pred)  # not specifying for missing values
+```
+
+MAE Function
+```{r}
+getMAE <- function(resp, pred, ...) {
+  abs_diff <- abs(resp - pred)
+  mean(abs_diff, ...)
+}
+```
+
+```{r}
+set.seed(10)
+n <- 100
+x <- runif(n)
+resp <- 3 + 10 * x + rnorm(n)
+pred <- predict(lm(resp ~ x), data.frame(x))
+getMAE(resp, pred)  # testing function
+```
+
+```{r}
+resp[2] <- NA_real_
+resp[7] <- NA_real_
+getMAE(resp, pred, na.rm = TRUE)  # specifying for missing values
+getMAE(resp, pred)  # not specifying for missing values
+```
+
+Wrapper Function
+```{r}
+getMetrics <- function(resp, pred, metrics = c("RMSE", "MAE"), ...) {
+  
+  if (!is.atomic(resp) | !is.atomic(pred)) {
+    stop("The function input must have two atomnic vectors")
+  }
+  
+  if (all(metrics == "RMSE")) {
+    metric_list <- list(RMSE = getRMSE(resp, pred, ...))
+  } else if (all(metrics == "MAE")) {
+    metric_list <- list(MAE = getMAE(resp, pred, ...))
+  } else {
+    metric_list <- list(RMSE = getRMSE(resp, pred, ...), 
+                        MAE = getMAE(resp, pred, ...))
+  }
+  
+  return(metric_list)
+}
+```
+
+```{r}
+set.seed(10)
+n <- 100
+x <- runif(n)
+resp <- 3 + 10 * x + rnorm(n)
+pred <- predict(lm(resp ~ x), data.frame(x))
+getMetrics(resp, pred)  # testing function with both metrics
+getMetrics(resp, pred, metrics = "RMSE")  # testing function for just RMSE
+getMetrics(resp, pred, metrics = "MAE")  # testing function for just MAE
+```
+
+```{r}
+resp[2] <- NA_real_
+resp[7] <- NA_real_
+getMetrics(resp, pred, na.rm = TRUE)  # specifying for missing values
+getMetrics(resp, pred)  # not specifying for missing values
+getMetrics(resp, pred, metrics = "RMSE", na.rm = TRUE)  # specifying for missing values
+getMetrics(resp, pred, metrics = "MAE", na.rm = TRUE)  # specifying for missing values
+getMetrics(resp, pred, metrics = "RMSE")  # not specifying for missing values
+getMetrics(resp, pred, metrics = "MAE")  # not specifying for missing values
+```
+
+```{r, error=TRUE}
+test_df <- data.frame()  
+getMetrics(resp = test_df, pred)  # testing with non vector input
+```
+
