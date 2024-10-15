@@ -29,7 +29,7 @@ lapply(X = my_list,
 library(tidyverse)
 ```
 
-RMSE Function
+1. RMSE Function
 ```{r}
 getRMSE <- function(resp, pred, ...) {
   sq_diff <- (resp - pred)^2
@@ -37,6 +37,7 @@ getRMSE <- function(resp, pred, ...) {
 }
 ```
 
+2.
 ```{r}
 set.seed(10)
 n <- 100
@@ -53,7 +54,7 @@ getRMSE(resp, pred, na.rm = TRUE)  # specifying for missing values
 getRMSE(resp, pred)  # not specifying for missing values
 ```
 
-MAE Function
+3. MAE Function
 ```{r}
 getMAE <- function(resp, pred, ...) {
   abs_diff <- abs(resp - pred)
@@ -61,6 +62,7 @@ getMAE <- function(resp, pred, ...) {
 }
 ```
 
+4.
 ```{r}
 set.seed(10)
 n <- 100
@@ -77,7 +79,7 @@ getMAE(resp, pred, na.rm = TRUE)  # specifying for missing values
 getMAE(resp, pred)  # not specifying for missing values
 ```
 
-Wrapper Function
+5. Wrapper Function
 ```{r}
 getMetrics <- function(resp, pred, metrics = c("RMSE", "MAE"), ...) {
   
@@ -98,6 +100,7 @@ getMetrics <- function(resp, pred, metrics = c("RMSE", "MAE"), ...) {
 }
 ```
 
+6.
 ```{r}
 set.seed(10)
 n <- 100
@@ -124,4 +127,71 @@ getMetrics(resp, pred, metrics = "MAE")  # not specifying for missing values
 test_df <- data.frame()  
 getMetrics(resp = test_df, pred)  # testing with non vector input
 ```
+
+## Task 3
+
+1. & 2.
+```{r}
+library(jsonlite)
+library(httr)
+url <- 
+  GET("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=6cfff225c2854bdea42bb46beb09a5fd")
+
+parsed <- fromJSON(rawToChar(url$content))
+
+biz_news <- parsed |>
+  pluck("articles") |>
+  as_tibble()
+```
+
+3.
+```{r}
+newsAPIFun <- function(title, time, key) {
+  url <- paste0("https://newsapi.org/v2/everything?q=",
+                title,
+                "&from=",
+                time,
+                "&apiKey=",
+                key)
+  
+  api_call <- GET(url)
+  parsed <- fromJSON(rawToChar(api_call$content))
+  
+  news_df <- parsed |>
+    pluck("articles")
+  
+  news_df <- as_tibble(news_df)
+  
+  return(news_df)
+}
+```
+
+```{r}
+## testing API function
+tesla_news <- newsAPIFun(title = "tesla", time = "2024-09-15", key = "6cfff225c2854bdea42bb46beb09a5fd")
+nvidia_news <- newsAPIFun(title = "nvidia", time = "2024-09-15", key = "6cfff225c2854bdea42bb46beb09a5fd")
+```
+
+4.
+```{r}
+## one-way contingency table
+table(tesla_news$source$name, useNA = "always")
+```
+
+5.
+```{r}
+library(lubridate)
+tesla_news <- tesla_news |>
+  mutate(publishedAt = ymd_hms(publishedAt)) |>
+  arrange(publishedAt) |>
+  mutate(pub_diff = publishedAt - lag(publishedAt))
+
+nvidia_news <- nvidia_news |>
+  mutate(publishedAt = ymd_hms(publishedAt)) |>
+  arrange(publishedAt) |>
+  mutate(pub_diff = publishedAt - lag(publishedAt))
+```
+
+
+
 
