@@ -132,13 +132,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 </div>
-<p>RMSE Function</p>
+<ol type="1">
+<li>RMSE Function</li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>getRMSE <span class="ot">&lt;-</span> <span class="cf">function</span>(resp, pred, ...) {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  sq_diff <span class="ot">&lt;-</span> (resp <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">mean</span>(sq_diff, ...))</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ol start="2" type="1">
+<li></li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
@@ -162,13 +167,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] NA</code></pre>
 </div>
 </div>
-<p>MAE Function</p>
+<ol start="3" type="1">
+<li>MAE Function</li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>getMAE <span class="ot">&lt;-</span> <span class="cf">function</span>(resp, pred, ...) {</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  abs_diff <span class="ot">&lt;-</span> <span class="fu">abs</span>(resp <span class="sc">-</span> pred)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(abs_diff, ...)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ol start="4" type="1">
+<li></li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
@@ -192,7 +202,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] NA</code></pre>
 </div>
 </div>
-<p>Wrapper Function</p>
+<ol start="5" type="1">
+<li>Wrapper Function</li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>getMetrics <span class="ot">&lt;-</span> <span class="cf">function</span>(resp, pred, <span class="at">metrics =</span> <span class="fu">c</span>(<span class="st">"RMSE"</span>, <span class="st">"MAE"</span>), ...) {</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -212,6 +224,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(metric_list)</span>
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ol start="6" type="1">
+<li></li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
@@ -279,9 +294,203 @@ $MAE
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()  </span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getMetrics</span>(<span class="at">resp =</span> test_df, resp)  <span class="co"># testing with non vector input</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getMetrics</span>(<span class="at">resp =</span> test_df, pred)  <span class="co"># testing with non vector input</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in getMetrics(resp = test_df, resp): The function input must have two atomnic vectors</code></pre>
+<pre><code>Error in getMetrics(resp = test_df, pred): The function input must have two atomnic vectors</code></pre>
+</div>
+</div>
+</section>
+<section id="task-3" class="level2">
+<h2 class="anchored" data-anchor-id="task-3">Task 3</h2>
+<ol type="1">
+<li>&amp; 2.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'jsonlite'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    flatten</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>temp_url <span class="ot">&lt;-</span> </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">GET</span>(<span class="st">"https://newsapi.org/v2/top-headlines?country=us&amp;category=business&amp;apiKey=6cfff225c2854bdea42bb46beb09a5fd"</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>parsed_temp <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">rawToChar</span>(temp_url<span class="sc">$</span>content))</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>biz_news <span class="ot">&lt;-</span> parsed_temp <span class="sc">|&gt;</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pluck</span>(<span class="st">"articles"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>biz_news</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 8
+   source$id $name author title description url   urlToImage publishedAt content
+   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;  
+ 1 cbs-news  CBS … Aimee… "Tru… Trading in… http… https://a… 2024-10-15… "Econo…
+ 2 the-wall… The … The W… "Boe… &lt;NA&gt;        http… &lt;NA&gt;       2024-10-15…  &lt;NA&gt;  
+ 3 the-verge The … Allis… "AMD… Chip maker… http… https://c… 2024-10-15… "AMD, …
+ 4 associat… Asso… TOM M… "Wal… Walgreens … http… https://d… 2024-10-15… "Walgr…
+ 5 &lt;NA&gt;      Barr… Barro… "Uni… &lt;NA&gt;        http… &lt;NA&gt;       2024-10-15…  &lt;NA&gt;  
+ 6 &lt;NA&gt;      Barr… Barro… "Nvi… &lt;NA&gt;        http… &lt;NA&gt;       2024-10-15…  &lt;NA&gt;  
+ 7 &lt;NA&gt;      Fox … Aisli… "Big… Big Lots a… http… https://a… 2024-10-15… "Big L…
+ 8 &lt;NA&gt;      Yaho… Karen… "Sto… As a fresh… http… https://s… 2024-10-15… "On Tu…
+ 9 &lt;NA&gt;      Fox … Eric … "Ame… The New Yo… http… https://a… 2024-10-15… "Ameri…
+10 cbs-news  CBS … Alexa… "As … Hospitals … http… https://a… 2024-10-15… "IV fl…
+11 &lt;NA&gt;      Fox … Danie… "Hol… The larges… http… https://a… 2024-10-15… "The N…
+12 abc-news  ABC … The A… "US … The United… http… https://i… 2024-10-15… "WASHI…
+13 the-wall… The … The W… "Sto… &lt;NA&gt;        http… &lt;NA&gt;       2024-10-15…  &lt;NA&gt;  
+14 &lt;NA&gt;      Vari… Todd … "Net… Analysts e… http… https://v… 2024-10-15… "Netfl…
+15 techcrun… Tech… Maxwe… "Whi… The Biden … http… https://t… 2024-10-15… "The B…
+16 &lt;NA&gt;      Real… https… "Maj… The U.S. F… http… https://w… 2024-10-15… "If yo…
+17 &lt;NA&gt;      New … Taylo… "Boe… Boeing wil… http… https://n… 2024-10-15… "Boein…
+18 &lt;NA&gt;      Inve… Andre… "Uni… Shares of … http… https://w… 2024-10-15… "&lt;ul&gt;&lt;…
+19 &lt;NA&gt;      Decr… Murtu… "Bit… Will Bitco… http… https://c… 2024-10-15… "With …
+20 ars-tech… Ars … Kyle … "Rep… But the pr… http… https://c… 2024-10-15…  &lt;NA&gt;  </code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>newsAPIFun <span class="ot">&lt;-</span> <span class="cf">function</span>(title, time, key) {</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"https://newsapi.org/v2/everything?q="</span>,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>                title,</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">"&amp;from="</span>,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>                time,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">"&amp;apiKey="</span>,</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>                key)</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>  api_call <span class="ot">&lt;-</span> <span class="fu">GET</span>(url)</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>  parsed <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">rawToChar</span>(api_call<span class="sc">$</span>content))</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>  news_df <span class="ot">&lt;-</span> parsed <span class="sc">|&gt;</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pluck</span>(<span class="st">"articles"</span>)</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>  news_df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(news_df)</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(news_df)</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="do">## testing API function</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>tesla_news <span class="ot">&lt;-</span> <span class="fu">newsAPIFun</span>(<span class="at">title =</span> <span class="st">"tesla"</span>, <span class="at">time =</span> <span class="st">"2024-09-16"</span>, <span class="at">key =</span> <span class="st">"6cfff225c2854bdea42bb46beb09a5fd"</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>nvidia_news <span class="ot">&lt;-</span> <span class="fu">newsAPIFun</span>(<span class="at">title =</span> <span class="st">"nvidia"</span>, <span class="at">time =</span> <span class="st">"2024-09-16"</span>, <span class="at">key =</span> <span class="st">"6cfff225c2854bdea42bb46beb09a5fd"</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>tesla_news</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 100 × 8
+   source$id $name author title description url   urlToImage publishedAt content
+   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;  
+ 1 &lt;NA&gt;      [Rem… &lt;NA&gt;   [Rem… "[Removed]" http… &lt;NA&gt;       2024-10-02… "[Remo…
+ 2 wired     Wired Kevin… I Ow… "The anxie… http… https://m… 2024-10-04… "It sh…
+ 3 wired     Wired Aaria… Tesl… "On Thursd… http… https://m… 2024-10-09… "On Th…
+ 4 the-verge The … Andre… Tesl… "Tesla CEO… http… https://c… 2024-10-11… "Tesla…
+ 5 the-verge The … Andre… The … "Tesla CEO… http… https://c… 2024-10-09… "Image…
+ 6 &lt;NA&gt;      [Rem… &lt;NA&gt;   [Rem… "[Removed]" http… &lt;NA&gt;       2024-10-08… "[Remo…
+ 7 the-verge The … Wes D… The … "Tesla’s O… http… https://c… 2024-10-13… "An Op…
+ 8 &lt;NA&gt;      BBC … &lt;NA&gt;   Musk… "BBC Tech … http… https://i… 2024-10-12… "Elon …
+ 9 the-verge The … Andre… EV c… "Revel tea… http… https://c… 2024-09-18… "EV ch…
+10 &lt;NA&gt;      Yaho… Danny… Tesl… "Tesla iss… http… &lt;NA&gt;       2024-10-03… "If yo…
+# ℹ 90 more rows</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="do">## one-way contingency table</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tesla_news<span class="sc">$</span>source<span class="sc">$</span>name, <span class="at">useNA =</span> <span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+                [Removed]              Ars Technica                  BBC News 
+                        3                         5                         1 
+         Business Insider            Digital Trends               Gizmodo.com 
+                       34                         1                        11 
+             heise online              Hipertextual Investor's Business Daily 
+                        2                        11                         1 
+                      NPR                       PBS                 The Verge 
+                        1                         1                         6 
+                     Time                 USA Today               VentureBeat 
+                        2                         1                         1 
+                    Wired          WPIX 11 New York                Xataka.com 
+                        3                         1                         6 
+      Yahoo Entertainment                      &lt;NA&gt; 
+                        9                         0 </code></pre>
+</div>
+</div>
+<ol start="5" type="1">
+<li></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>tesla_news_mod <span class="ot">&lt;-</span> tesla_news <span class="sc">|&gt;</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">publishedAt =</span> <span class="fu">ymd_hms</span>(publishedAt)) <span class="sc">|&gt;</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(publishedAt) <span class="sc">|&gt;</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pub_diff =</span> publishedAt <span class="sc">-</span> <span class="fu">lag</span>(publishedAt))</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>nvidia_news_mod <span class="ot">&lt;-</span> nvidia_news <span class="sc">|&gt;</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">publishedAt =</span> <span class="fu">ymd_hms</span>(publishedAt)) <span class="sc">|&gt;</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(publishedAt) <span class="sc">|&gt;</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pub_diff =</span> publishedAt <span class="sc">-</span> <span class="fu">lag</span>(publishedAt))</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>tesla_news_mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 100 × 9
+   source$id $name author title description url   urlToImage publishedAt        
+   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;      &lt;dttm&gt;             
+ 1 &lt;NA&gt;      WPIX… Laure… 2 ki… WHITE PLAI… http… https://m… 2024-09-16 20:14:22
+ 2 business… Busi… Thero… Orac… Larry Elli… http… https://i… 2024-09-17 10:22:32
+ 3 &lt;NA&gt;      Yaho… &lt;NA&gt;   Hgen… &lt;NA&gt;        http… &lt;NA&gt;       2024-09-17 13:00:00
+ 4 &lt;NA&gt;      Xata… Rubén… X ha… Por mucho … http… https://i… 2024-09-17 13:30:16
+ 5 ars-tech… Ars … Jonat… Driv… As drivers… http… https://c… 2024-09-17 15:00:59
+ 6 the-verge The … Andre… Back… For $1,999… http… https://c… 2024-09-18 04:00:00
+ 7 business… Busi… Nora … GM's… General Mo… http… https://i… 2024-09-18 12:01:01
+ 8 the-verge The … Andre… EV c… Revel team… http… https://c… 2024-09-18 13:00:00
+ 9 &lt;NA&gt;      Yaho… Lawre… 1 So… This AI co… http… https://s… 2024-09-19 11:15:00
+10 business… Busi… Tom C… A Ru… Ramzan Kad… http… https://i… 2024-09-20 10:43:52
+# ℹ 90 more rows
+# ℹ 2 more variables: content &lt;chr&gt;, pub_diff &lt;drtn&gt;</code></pre>
+</div>
+</div>
+<ol start="6" type="1">
+<li></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>tesla_subset <span class="ot">&lt;-</span> tesla_news_mod <span class="sc">|&gt;</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(publishedAt, pub_diff)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>tesla_summary <span class="ot">&lt;-</span> tesla_subset <span class="sc">|&gt;</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(\(x) <span class="fu">list</span>(<span class="at">mean =</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">sd =</span> <span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">median =</span> <span class="fu">median</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>tesla_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$publishedAt
+$publishedAt$mean
+[1] "2024-10-05 11:12:58 UTC"
+
+$publishedAt$sd
+[1] 715699.7
+
+$publishedAt$median
+[1] "2024-10-09 03:34:38 UTC"
+
+
+$pub_diff
+$pub_diff$mean
+Time difference of 25329.83 secs
+
+$pub_diff$sd
+[1] 34252.19
+
+$pub_diff$median
+Time difference of 8937 secs</code></pre>
 </div>
 </div>
 </section>

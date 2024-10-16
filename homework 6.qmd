@@ -134,14 +134,16 @@ getMetrics(resp = test_df, pred)  # testing with non vector input
 ```{r}
 library(jsonlite)
 library(httr)
-url <- 
+temp_url <- 
   GET("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=6cfff225c2854bdea42bb46beb09a5fd")
 
-parsed <- fromJSON(rawToChar(url$content))
+parsed_temp <- fromJSON(rawToChar(temp_url$content))
 
-biz_news <- parsed |>
+biz_news <- parsed_temp |>
   pluck("articles") |>
   as_tibble()
+
+biz_news
 ```
 
 3.
@@ -168,8 +170,10 @@ newsAPIFun <- function(title, time, key) {
 
 ```{r}
 ## testing API function
-tesla_news <- newsAPIFun(title = "tesla", time = "2024-09-15", key = "6cfff225c2854bdea42bb46beb09a5fd")
-nvidia_news <- newsAPIFun(title = "nvidia", time = "2024-09-15", key = "6cfff225c2854bdea42bb46beb09a5fd")
+tesla_news <- newsAPIFun(title = "tesla", time = "2024-09-16", key = "6cfff225c2854bdea42bb46beb09a5fd")
+nvidia_news <- newsAPIFun(title = "nvidia", time = "2024-09-16", key = "6cfff225c2854bdea42bb46beb09a5fd")
+
+tesla_news
 ```
 
 4.
@@ -181,17 +185,31 @@ table(tesla_news$source$name, useNA = "always")
 5.
 ```{r}
 library(lubridate)
-tesla_news <- tesla_news |>
+tesla_news_mod <- tesla_news |>
   mutate(publishedAt = ymd_hms(publishedAt)) |>
   arrange(publishedAt) |>
   mutate(pub_diff = publishedAt - lag(publishedAt))
 
-nvidia_news <- nvidia_news |>
+nvidia_news_mod <- nvidia_news |>
   mutate(publishedAt = ymd_hms(publishedAt)) |>
   arrange(publishedAt) |>
   mutate(pub_diff = publishedAt - lag(publishedAt))
+
+tesla_news_mod
 ```
 
+6.
+```{r}
+tesla_subset <- tesla_news_mod |>
+  select(publishedAt, pub_diff)
+
+tesla_summary <- tesla_subset |>
+  map(\(x) list(mean = mean(x, na.rm = TRUE),
+                sd = sd(x, na.rm = TRUE),
+                median = median(x, na.rm = TRUE)))
+
+tesla_summary
+```
 
 
 
